@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BeastLocator</string>
+    <string name="arrow">方角矢印</string>
+    <string name="direction_label">方角: %1$s</string>
+    <string name="widget_waiting_location">位置情報待機中</string>
+    <string name="widget_distance_placeholder">--</string>
+    <string name="widget_arrival_short">到着</string>
+    <string name="widget_arrival_celebration">🎉</string>
+    <string name="arrival_title">こ↑こ↓</string>
+    <string name="widget_description_small">目的地までの方角と距離(2x1)</string>
+    <string name="widget_description_large">目的地までの方角と距離(2x2)</string>
+    <string name="notification_channel_name">目的地通知</string>
+    <string name="notification_title">野獣邸に到着</string>
+    <string name="notification_body">住所: %1$s</string>
+    <string name="notification_live_title">目的地へ接近中</string>
+    <string name="notification_live_body">到達まで %1$s</string>
+    <string name="notification_live_subtext">接近情報</string>
+    <string name="notification_live_summary">進捗 %1$d%%</string>
+    <string name="sound_monitor_channel_name">常時距離監視</string>
+    <string name="sound_monitor_notification_title">距離監視を実行中</string>
+    <string name="sound_monitor_notification_both">到着時/114.514km時の音声再生を監視しています</string>
+    <string name="sound_monitor_notification_arrival_only">到着時の音声再生を監視しています</string>
+    <string name="sound_monitor_notification_114514_only">114.514km時の音声再生を監視しています</string>
+    <string name="sound_monitor_notification_interval_only">距離間隔ごとの音声再生を監視しています</string>
+    <string name="sound_monitor_notification_arrival_and_interval">到着時/距離間隔ごとの音声再生を監視しています</string>
+    <string name="sound_monitor_notification_114514_and_interval">114.514km時/距離間隔ごとの音声再生を監視しています</string>
+    <string name="sound_monitor_notification_all">到着時/114.514km時/距離間隔ごとの音声再生を監視しています</string>
+    <string name="sound_monitor_notification_background_only">バックグラウンドで位置情報を更新しています</string>
+    <string name="sound_playback_channel_name">サウンド再生</string>
+    <string name="sound_playback_notification_title">サウンドを再生中</string>
+    <string name="sound_playback_notification_body">バックグラウンドで音声を再生しています</string>
+</resources>

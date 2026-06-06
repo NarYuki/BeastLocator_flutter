@@ -1,0 +1,5 @@
+"CFBundleDisplayName" = "BeastLocator";
+"CFBundleName" = "BeastLocator";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "用于显示到目的地的距离和方向。";
+"NSLocationAlwaysUsageDescription" = "用于在后台持续更新到目的地的距离和方向。";
+"NSLocationWhenInUseUsageDescription" = "用于显示到目的地的距离和方向。";

@@ -1,0 +1,74 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IDE/editor
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Flutter/Dart/Pub
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/Flutter/ephemeral/
+**/GeneratedPluginRegistrant.*
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android
+/android/.gradle/
+/android/local.properties
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/app/*.jks
+/android/app/*.keystore
+/android/key.properties
+
+# Apple
+**/Pods/
+**/DerivedData/
+**/xcuserdata/
+**/*.xcuserstate
+**/*.xcarchive
+*.ipa
+*.dSYM
+*.mobileprovision
+*.provisionprofile
+*.p8
+*.p12
+*.cer
+*.pem
+*.key
+ios/ExportOptions.plist
+macos/ExportOptions.plist
+
+# Environment and service config
+.env
+.env.*
+GoogleService-Info.plist
+google-services.json
