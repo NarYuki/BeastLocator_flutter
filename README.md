@@ -17,9 +17,9 @@
 そんな野獣邸を身近に感じたかったので、このアプリを作りました<br>
 <br>
 
-Flutterなので、iOS/Android/macOS/Windows/OpenHarmonyなどの各プラットフォームへ容易に対応できます。
+Flutter製のため、このフォークを用いてiOS/Android/macOS/Windows/OpenHarmonyなどの各プラットフォームへ容易に対応できます。
 
-iOS版に関しては、TestFlightから簡単にインストールすることが可能です。
+今回のiOS版に関しては、サードローディング不要でTestFlightから簡単にインストールすることが可能です。
 [TestFlight (0.9.5)](https://testflight.apple.com/join/6heARakB)
 
 ## スクリーンショット
