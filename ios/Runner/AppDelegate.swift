@@ -138,6 +138,13 @@ struct BeastNativeActivityAttributes: ActivityAttributes, Identifiable {
     }
 
     for (key, value) in values {
+      if isLocationCoordinateKey(key) {
+        guard let coordinate = finiteNumber(from: value) else {
+          continue
+        }
+        defaults.set(coordinate, forKey: key)
+        continue
+      }
       if value is NSNull {
         defaults.removeObject(forKey: key)
       } else {
@@ -149,7 +156,31 @@ struct BeastNativeActivityAttributes: ActivityAttributes, Identifiable {
 
     if #available(iOS 14.0, *) {
       WidgetCenter.shared.reloadTimelines(ofKind: "BeastLocatorHomeWidget")
+      WidgetCenter.shared.reloadAllTimelines()
     }
+  }
+
+  private func isLocationCoordinateKey(_ key: String) -> Bool {
+    key == "last_lat" || key == "last_lng"
+  }
+
+  private func finiteNumber(from value: Any) -> Double? {
+    if value is NSNull {
+      return nil
+    }
+    if let number = value as? NSNumber {
+      let doubleValue = number.doubleValue
+      return doubleValue.isFinite ? doubleValue : nil
+    }
+    if let doubleValue = value as? Double, doubleValue.isFinite {
+      return doubleValue
+    }
+    if let stringValue = value as? String,
+       let doubleValue = Double(stringValue),
+       doubleValue.isFinite {
+      return doubleValue
+    }
+    return nil
   }
 
   private func updateLiveActivity(data: [String: Any], result: @escaping FlutterResult) {

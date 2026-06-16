@@ -76,7 +76,6 @@ class BeastLocatorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const seed = Color(0xFF0057D8);
     return MaterialApp(
       title: 'BeastLocator',
       debugShowCheckedModeBanner: false,
@@ -88,22 +87,138 @@ class BeastLocatorApp extends StatelessWidget {
       supportedLocales: const [Locale('ja'), Locale('en'), Locale('zh', 'CN')],
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: seed,
-          brightness: Brightness.light,
+        colorScheme: const ColorScheme.light(
+          primary: _BeastPalette.lightPrimary,
+          onPrimary: _BeastPalette.lightOnPrimary,
+          primaryContainer: _BeastPalette.lightPrimaryContainer,
+          onPrimaryContainer: _BeastPalette.lightOnPrimaryContainer,
+          secondary: _BeastPalette.lightSecondary,
+          onSecondary: _BeastPalette.lightOnSecondary,
+          surface: _BeastPalette.lightSurfaceStart,
+          onSurface: _BeastPalette.lightOnSurface,
+          outline: _BeastPalette.lightOutline,
         ),
-        scaffoldBackgroundColor: const Color(0xFFF6FAFF),
+        scaffoldBackgroundColor: _BeastPalette.lightSurfaceStart,
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: seed,
-          brightness: Brightness.dark,
+        colorScheme: const ColorScheme.dark(
+          primary: _BeastPalette.darkPrimary,
+          onPrimary: _BeastPalette.darkOnPrimary,
+          primaryContainer: _BeastPalette.darkPrimaryContainer,
+          onPrimaryContainer: _BeastPalette.darkOnPrimaryContainer,
+          secondary: _BeastPalette.darkSecondary,
+          onSecondary: _BeastPalette.darkOnSecondary,
+          surface: _BeastPalette.darkSurfaceStart,
+          onSurface: _BeastPalette.darkOnSurface,
+          outline: _BeastPalette.darkOutline,
         ),
+        scaffoldBackgroundColor: _BeastPalette.darkSurfaceStart,
       ),
       home: const LocatorScreen(),
     );
   }
+}
+
+class _BeastPalette {
+  const _BeastPalette._({
+    required this.primary,
+    required this.onPrimary,
+    required this.primaryContainer,
+    required this.onPrimaryContainer,
+    required this.secondary,
+    required this.onSecondary,
+    required this.surfaceStart,
+    required this.surfaceMid,
+    required this.surfaceEnd,
+    required this.surfaceCard,
+    required this.onSurface,
+    required this.onSurfaceVariant,
+    required this.outline,
+  });
+
+  static const lightPrimary = Color(0xFF0057D8);
+  static const lightOnPrimary = Color(0xFFFFFFFF);
+  static const lightPrimaryContainer = Color(0xFFD8E6FF);
+  static const lightOnPrimaryContainer = Color(0xFF0E2D63);
+  static const lightSecondary = Color(0xFF0B57D0);
+  static const lightOnSecondary = Color(0xFFFFFFFF);
+  static const lightSurfaceStart = Color(0xFFF6FAFF);
+  static const lightSurfaceMid = Color(0xFFEDF4FF);
+  static const lightSurfaceEnd = Color(0xFFE8F1FF);
+  static const lightSurfaceCard = Color(0xFFFDFEFF);
+  static const lightOnSurface = Color(0xFF0F172A);
+  static const lightOnSurfaceVariant = Color(0xFF334155);
+  static const lightOutline = Color(0xFFAFC2DE);
+
+  static const darkPrimary = Color(0xFF8AB4F8);
+  static const darkOnPrimary = Color(0xFF06214A);
+  static const darkPrimaryContainer = Color(0xFF1E3A66);
+  static const darkOnPrimaryContainer = Color(0xFFD9E8FF);
+  static const darkSecondary = Color(0xFF90CAF9);
+  static const darkOnSecondary = Color(0xFF06233F);
+  static const darkSurfaceStart = Color(0xFF0D1624);
+  static const darkSurfaceMid = Color(0xFF101B2B);
+  static const darkSurfaceEnd = Color(0xFF122034);
+  static const darkSurfaceCard = Color(0xFF172338);
+  static const darkOnSurface = Color(0xFFE7EEF9);
+  static const darkOnSurfaceVariant = Color(0xFFB7C5DB);
+  static const darkOutline = Color(0xFF3D5678);
+
+  static const light = _BeastPalette._(
+    primary: lightPrimary,
+    onPrimary: lightOnPrimary,
+    primaryContainer: lightPrimaryContainer,
+    onPrimaryContainer: lightOnPrimaryContainer,
+    secondary: lightSecondary,
+    onSecondary: lightOnSecondary,
+    surfaceStart: lightSurfaceStart,
+    surfaceMid: lightSurfaceMid,
+    surfaceEnd: lightSurfaceEnd,
+    surfaceCard: lightSurfaceCard,
+    onSurface: lightOnSurface,
+    onSurfaceVariant: lightOnSurfaceVariant,
+    outline: lightOutline,
+  );
+
+  static const dark = _BeastPalette._(
+    primary: darkPrimary,
+    onPrimary: darkOnPrimary,
+    primaryContainer: darkPrimaryContainer,
+    onPrimaryContainer: darkOnPrimaryContainer,
+    secondary: darkSecondary,
+    onSecondary: darkOnSecondary,
+    surfaceStart: darkSurfaceStart,
+    surfaceMid: darkSurfaceMid,
+    surfaceEnd: darkSurfaceEnd,
+    surfaceCard: darkSurfaceCard,
+    onSurface: darkOnSurface,
+    onSurfaceVariant: darkOnSurfaceVariant,
+    outline: darkOutline,
+  );
+
+  final Color primary;
+  final Color onPrimary;
+  final Color primaryContainer;
+  final Color onPrimaryContainer;
+  final Color secondary;
+  final Color onSecondary;
+  final Color surfaceStart;
+  final Color surfaceMid;
+  final Color surfaceEnd;
+  final Color surfaceCard;
+  final Color onSurface;
+  final Color onSurfaceVariant;
+  final Color outline;
+
+  static _BeastPalette of(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark ? dark : light;
+
+  LinearGradient get mainGradient => LinearGradient(
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+    colors: [surfaceStart, surfaceMid, surfaceEnd],
+  );
 }
 
 class Destination {
@@ -206,8 +321,6 @@ class AppStore {
 
   Future<void> clearDebugDistanceOverride() async {
     await _prefs.setBool('debug_distance_override_enabled', false);
-    await _prefs.remove('last_lat');
-    await _prefs.remove('last_lng');
   }
 
   bool get distanceMaskButtonVisible =>
@@ -314,6 +427,7 @@ class AppStore {
 
 class GeoUtils {
   static const _earthRadiusMeters = 6371000.0;
+  static const _distance114514Meters = 114514.0;
 
   static double distanceMeters(Destination from, Destination to) {
     final lat1 = _rad(from.lat);
@@ -364,6 +478,9 @@ class GeoUtils {
 
   static String formatDistance(double distanceMeters) {
     if (distanceMeters >= 1000) {
+      if ((distanceMeters - _distance114514Meters).abs() < 0.5) {
+        return '${(distanceMeters / 1000).toStringAsFixed(3)} km';
+      }
       return '${(distanceMeters / 1000).toStringAsFixed(2)} km';
     }
     return '${distanceMeters.floor()} m';
@@ -426,6 +543,7 @@ class _LocatorScreenState extends State<LocatorScreen>
   late final AnimationController _loadingController;
   double? _previousSoundDistanceMeters;
   int? _lastIntervalSoundBucket;
+  bool _arrivalSoundPlayed = false;
   bool _distance114514SoundPlayed = false;
   bool _isAppBackgrounded = false;
   final LiveActivities _liveActivities = LiveActivities();
@@ -479,9 +597,9 @@ class _LocatorScreenState extends State<LocatorScreen>
 
   Future<void> _updateLiveActivityFromCurrentLocation() async {
     final store = _store;
-    final current = _currentLocation;
-    if (store == null ||
-        current == null ||
+    if (store == null) return;
+    final current = _currentLocation ?? store.lastKnownLocation;
+    if (current == null ||
         !store.liveUpdateEnabled ||
         store.isDestinationAnswered) {
       return;
@@ -566,6 +684,7 @@ class _LocatorScreenState extends State<LocatorScreen>
 
     if (store.debugDistanceOverrideEnabled) {
       _currentLocation = store.lastKnownLocation;
+      await _syncNativeState();
       _refreshComputedUi();
       return;
     }
@@ -580,14 +699,6 @@ class _LocatorScreenState extends State<LocatorScreen>
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
-    if (defaultTargetPlatform == TargetPlatform.iOS &&
-        permission == LocationPermission.whileInUse) {
-      await NativeBridge.requestAlwaysLocationAuthorization();
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.whileInUse) {
-        unawaited(_showAlwaysLocationPrompt());
-      }
-    }
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
       _setUnavailable('位置情報の権限が必要です');
@@ -599,6 +710,7 @@ class _LocatorScreenState extends State<LocatorScreen>
     if (last != null) {
       await _onPosition(last);
     }
+    unawaited(_primeCurrentPosition());
     _positionSub =
         Geolocator.getPositionStream(
           locationSettings: _locationSettings(),
@@ -606,6 +718,19 @@ class _LocatorScreenState extends State<LocatorScreen>
           _onPosition,
           onError: (_) => _setUnavailable('位置情報の取得を開始できませんでした'),
         );
+  }
+
+  Future<void> _primeCurrentPosition() async {
+    final store = _store;
+    if (store == null || store.debugDistanceOverrideEnabled) return;
+    try {
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: _locationSettings(),
+      ).timeout(const Duration(seconds: 12));
+      await _onPosition(position);
+    } catch (_) {
+      // The continuous stream remains active; this only primes widgets quickly.
+    }
   }
 
   LocationSettings _locationSettings() {
@@ -623,33 +748,6 @@ class _LocatorScreenState extends State<LocatorScreen>
       accuracy: LocationAccuracy.high,
       distanceFilter: 1,
     );
-  }
-
-  Future<void> _showAlwaysLocationPrompt() async {
-    if (!mounted) return;
-    final openSettings = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('常に許可が必要です'),
-        content: const Text(
-          'ウィジェット更新や到達通知を正しく動かすため、次の画面で「権限」を開き、'
-          '位置情報を「常に許可」に変更してください',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('あとで'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('設定へ進む'),
-          ),
-        ],
-      ),
-    );
-    if (openSettings == true) {
-      await Geolocator.openAppSettings();
-    }
   }
 
   Future<void> _onPosition(Position position) async {
@@ -670,16 +768,28 @@ class _LocatorScreenState extends State<LocatorScreen>
     final store = _store;
     if (store == null) return;
     final target = store.destination;
-    final current = _currentLocation;
-    await NativeBridge.syncState({
+    final current = _currentLocation ?? store.lastKnownLocation;
+    double? liveDistance = distanceMeters;
+    String? liveDirection = direction;
+    double? liveRotation;
+    if (current != null && current.isValid && target.isValid) {
+      final bearing = GeoUtils.bearingDegrees(current, target);
+      liveDistance ??= GeoUtils.distanceMeters(current, target);
+      liveDirection ??= GeoUtils.cardinalFromBearing(bearing);
+      liveRotation = GeoUtils.normalizeRotation(
+        bearing - _headingDegrees - _arrowOffsetDegrees,
+      );
+    }
+
+    final arrived = store.isDestinationAnswered;
+    final hasWidgetData = liveDistance != null && liveDirection != null;
+    final nativeState = <String, Object?>{
       'debug_dest_override_enabled': store.isDestinationOverrideEnabled,
       'debug_dest_override_lat': target.lat,
       'debug_dest_override_lng': target.lng,
-      'dest_answered': store.isDestinationAnswered,
+      'dest_answered': arrived,
       'arrival_rearm_required': store.arrivalRearmRequired,
       'arrival_name': store.arrivalName,
-      'last_lat': current?.lat,
-      'last_lng': current?.lng,
       'last_heading': _headingDegrees,
       'debug_distance_override_enabled': store.debugDistanceOverrideEnabled,
       'arrival_notification_enabled': store.arrivalNotificationEnabled,
@@ -695,20 +805,23 @@ class _LocatorScreenState extends State<LocatorScreen>
       'distance_114514_sound_enabled': store.distance114514SoundEnabled,
       'distance_interval_sound_enabled': store.distanceIntervalSoundEnabled,
       'distance_interval_sound_meters': store.distanceIntervalMeters,
-    });
-    double? liveDistance = distanceMeters;
-    String? liveDirection = direction;
-    double? liveRotation;
-    if (current != null && current.isValid && target.isValid) {
-      final bearing = GeoUtils.bearingDegrees(current, target);
-      liveDistance ??= GeoUtils.distanceMeters(current, target);
-      liveDirection ??= GeoUtils.cardinalFromBearing(
-        GeoUtils.normalize360(bearing - _headingDegrees),
-      );
-      liveRotation = GeoUtils.normalizeRotation(
-        bearing - _headingDegrees - _arrowOffsetDegrees,
-      );
+      'widget_has_data': hasWidgetData,
+      'widget_distance': hasWidgetData
+          ? (arrived ? '到着' : GeoUtils.formatDistance(liveDistance))
+          : null,
+      'widget_direction': hasWidgetData
+          ? (arrived ? 'こ↑こ↓' : '方角: $liveDirection')
+          : null,
+      'widget_rotation': hasWidgetData
+          ? (arrived ? 0.0 : liveRotation ?? 0.0)
+          : null,
+      'widget_arrived': arrived,
+    };
+    if (current != null && current.isValid) {
+      nativeState['last_lat'] = current.lat;
+      nativeState['last_lng'] = current.lng;
     }
+    await NativeBridge.syncState(nativeState);
 
     if (liveDistance != null &&
         liveDirection != null &&
@@ -837,9 +950,7 @@ class _LocatorScreenState extends State<LocatorScreen>
       bearing - _headingDegrees - _arrowOffsetDegrees,
     );
     final masked = store.manualDistanceMaskEnabled;
-    final direction = GeoUtils.cardinalFromBearing(
-      GeoUtils.normalize360(bearing - _headingDegrees),
-    );
+    final direction = GeoUtils.cardinalFromBearing(bearing);
 
     _handleSoundTriggers(distance);
     if (mounted) {
@@ -874,6 +985,18 @@ class _LocatorScreenState extends State<LocatorScreen>
     if (store == null || !distanceMeters.isFinite) return;
 
     final previous = _previousSoundDistanceMeters;
+    final enteredArrivalRange =
+        distanceMeters <= _arrivalThresholdMeters &&
+        (previous == null || previous > _arrivalThresholdMeters);
+    if (distanceMeters > _arrivalThresholdMeters + 25) {
+      _arrivalSoundPlayed = false;
+    } else if (store.arrivalSoundEnabled &&
+        !_arrivalSoundPlayed &&
+        enteredArrivalRange) {
+      _arrivalSoundPlayed = true;
+      unawaited(_playSound('audio/arrival_0km.wav', priority: 4));
+    }
+
     final upper114514 = _distance114514Meters + _distance114514ToleranceMeters;
     final lower114514 = _distance114514Meters - _distance114514ToleranceMeters;
     final isInside114514Range =
@@ -925,7 +1048,8 @@ class _LocatorScreenState extends State<LocatorScreen>
           ? resolved!
           : '${target.lat.toStringAsFixed(6)}, ${target.lng.toStringAsFixed(6)}',
     );
-    if (store.arrivalSoundEnabled) {
+    if (store.arrivalSoundEnabled && !_arrivalSoundPlayed) {
+      _arrivalSoundPlayed = true;
       await _playSound('audio/arrival_0km.wav', priority: 2);
     }
     if (mounted) setState(() {});
@@ -947,6 +1071,7 @@ class _LocatorScreenState extends State<LocatorScreen>
     await store.setArrivalRearmRequired(true);
     _previousSoundDistanceMeters = null;
     _lastIntervalSoundBucket = null;
+    _arrivalSoundPlayed = false;
     _distance114514SoundPlayed = false;
     _liveActivityShoutTimer?.cancel();
     _liveActivityFlushTimer?.cancel();
@@ -980,6 +1105,7 @@ class _LocatorScreenState extends State<LocatorScreen>
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     final store = _store;
     final target = store?.destination ?? AppStore.defaultDestination;
     final arrived = store?.isDestinationAnswered ?? false;
@@ -991,13 +1117,7 @@ class _LocatorScreenState extends State<LocatorScreen>
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFFF6FAFF), Color(0xFFEDF4FF), Color(0xFFEAF7F1)],
-          ),
-        ),
+        decoration: BoxDecoration(gradient: colors.mainGradient),
         child: SafeArea(
           child: Stack(
             children: [
@@ -1007,7 +1127,7 @@ class _LocatorScreenState extends State<LocatorScreen>
                 child: Row(
                   children: [
                     if (maskVisible)
-                      IconButton.filledTonal(
+                      _MainIconButton(
                         tooltip: manualMask ? '距離表示の丸めをオフにする' : '距離表示の丸めをオンにする',
                         onPressed: _toggleMask,
                         icon: Icon(
@@ -1015,7 +1135,7 @@ class _LocatorScreenState extends State<LocatorScreen>
                         ),
                       ),
                     const SizedBox(width: 8),
-                    IconButton.filledTonal(
+                    _MainIconButton(
                       tooltip: '設定',
                       onPressed: _openSettings,
                       icon: const Icon(Icons.settings),
@@ -1063,6 +1183,7 @@ class _LocatorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -1084,15 +1205,14 @@ class _LocatorView extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 56,
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF0F172A),
-              ),
+              ).copyWith(color: colors.onSurface),
             ),
           ),
           const SizedBox(height: 10),
           Text(
             directionText,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 30, color: Color(0xFF334155)),
+            style: TextStyle(fontSize: 30, color: colors.onSurfaceVariant),
           ),
         ],
       ),
@@ -1114,35 +1234,40 @@ class _ArrivalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Center(
+          Center(
             child: Text(
               'こ↑こ↓',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 44, fontWeight: FontWeight.w800),
+              style: TextStyle(
+                fontSize: 44,
+                fontWeight: FontWeight.w800,
+                color: colors.onSurface,
+              ),
             ),
           ),
           const SizedBox(height: 14),
           Text(
             name?.isNotEmpty == true ? name! : '正解位置を確認中...',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF334155),
+              color: colors.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             '緯度 ${destination.lat.toStringAsFixed(6)} / 経度 ${destination.lng.toStringAsFixed(6)}',
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'monospace',
               fontSize: 14,
-              color: Color(0xFF334155),
+              color: colors.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 22),
@@ -1153,6 +1278,42 @@ class _ArrivalView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _MainIconButton extends StatelessWidget {
+  const _MainIconButton({
+    required this.tooltip,
+    required this.onPressed,
+    required this.icon,
+  });
+
+  final String tooltip;
+  final VoidCallback onPressed;
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: colors.surfaceCard,
+        shape: CircleBorder(side: BorderSide(color: colors.outline)),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onPressed,
+          child: SizedBox(
+            width: 48,
+            height: 48,
+            child: IconTheme(
+              data: IconThemeData(color: colors.onSurface, size: 28),
+              child: Center(child: icon),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -1360,7 +1521,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         _SettingsCard(
           title: 'バージョン',
-          subtitle: 'BeastLocator / Version 1.0.0',
+          subtitle: 'BeastLocator / Version 0.9.5-flutter',
           children: [
             _FullWidthButton(
               icon: Icons.bug_report,
@@ -1668,23 +1829,12 @@ class AboutScreen extends StatelessWidget {
       children: [
         _SettingsCard(
           title: 'BeastLocator',
-          subtitle: 'Version 1.0.0',
+          subtitle: 'Version 0.9.5-flutter',
           children: [
             Center(child: Image.asset('assets/images/icon.png', height: 96)),
             const _BodyText(
               'このアプリは、個人的に制作したファンメイドアプリです。'
               'コートコーポレーション本社周辺での迷惑行為を推奨、および助長するものではありません。',
-            ),
-          ],
-        ),
-        const Row(
-          children: [
-            Expanded(
-              child: _CompactInfoCard(title: '開発チャネル', value: 'Flutter'),
-            ),
-            SizedBox(width: 12),
-            Expanded(
-              child: _CompactInfoCard(title: 'バージョン', value: '1.0.0'),
             ),
           ],
         ),
@@ -1706,24 +1856,26 @@ class AboutScreen extends StatelessWidget {
             ),
           ],
         ),
-        const _SettingsCard(
+        _SettingsCard(
           title: 'オープンソースライセンス',
           subtitle: '利用ライブラリ',
-          children: [_BodyText('利用しているパッケージのライセンスを一覧で表示できます。')],
-        ),
-        _FullWidthButton(
-          icon: Icons.article,
-          label: 'ライセンス一覧を表示',
-          outlined: true,
-          onPressed: () => showLicensePage(
-            context: context,
-            applicationName: 'BeastLocator',
-            applicationVersion: '1.0.0',
-            applicationIcon: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Image.asset('assets/images/icon.png', height: 72),
+          children: [
+            const _BodyText('利用しているパッケージのライセンスを一覧で表示できます。'),
+            _FullWidthButton(
+              icon: Icons.article,
+              label: 'ライセンス一覧を表示',
+              outlined: true,
+              onPressed: () => showLicensePage(
+                context: context,
+                applicationName: 'BeastLocator',
+                applicationVersion: '0.9.5-flutter',
+                applicationIcon: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Image.asset('assets/images/icon.png', height: 72),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );
@@ -1743,18 +1895,13 @@ class _BeastSettingsScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFEAF4FF), Color(0xFFF8FBFF)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        decoration: BoxDecoration(gradient: colors.mainGradient),
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 32),
+            padding: const EdgeInsets.all(20),
             children: [
               Align(
                 alignment: Alignment.centerLeft,
@@ -1763,32 +1910,33 @@ class _BeastSettingsScaffold extends StatelessWidget {
                   onPressed: () => Navigator.maybePop(context),
                   icon: const Icon(Icons.arrow_back),
                   style: IconButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: const Color(0xFF102B4D),
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: colors.onSurface,
                     fixedSize: const Size(48, 48),
+                    padding: const EdgeInsets.all(12),
                   ),
                 ),
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 10),
               Text(
                 beastText(context, title),
-                style: const TextStyle(
-                  fontSize: 28,
+                style: TextStyle(
+                  fontSize: 26,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF102B4D),
+                  color: colors.onSurface,
                 ),
               ),
               if (subtitle != null) ...[
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 Text(
                   beastText(context, subtitle!),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
-                    color: Color(0xFF52677F),
+                    color: colors.onSurfaceVariant,
                   ),
                 ),
               ],
-              const SizedBox(height: 12),
+              const SizedBox(height: 0),
               ...children,
             ],
           ),
@@ -1811,30 +1959,31 @@ class _SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Container(
       margin: const EdgeInsets.only(top: 14),
-      padding: const EdgeInsets.fromLTRB(16, 15, 16, 16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFFDFEFF),
+        color: colors.surfaceStart,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFAFC2DE)),
+        border: Border.all(color: colors.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             beastText(context, title),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF102B4D),
+              color: colors.onSurface,
             ),
           ),
           if (subtitle != null) ...[
-            const SizedBox(height: 3),
+            const SizedBox(height: 2),
             Text(
               beastText(context, subtitle!),
-              style: const TextStyle(fontSize: 12, color: Color(0xFF5E7189)),
+              style: TextStyle(fontSize: 12, color: colors.onSurfaceVariant),
             ),
           ],
           const SizedBox(height: 12),
@@ -1847,7 +1996,7 @@ class _SettingsCard extends StatelessWidget {
   static List<Widget> _withSpacing(List<Widget> children) {
     final spaced = <Widget>[];
     for (final child in children) {
-      if (spaced.isNotEmpty) spaced.add(const SizedBox(height: 10));
+      if (spaced.isNotEmpty) spaced.add(const SizedBox(height: 12));
       spaced.add(child);
     }
     return spaced;
@@ -1869,6 +2018,7 @@ class _SettingSwitchRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Row(
       children: [
         Expanded(
@@ -1877,16 +2027,16 @@ class _SettingSwitchRow extends StatelessWidget {
             children: [
               Text(
                 beastText(context, title),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF172A44),
+                  color: colors.onSurface,
                 ),
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: 1),
               Text(
                 beastText(context, subtitle),
-                style: const TextStyle(fontSize: 12, color: Color(0xFF62758C)),
+                style: TextStyle(fontSize: 12, color: colors.onSurfaceVariant),
               ),
             ],
           ),
@@ -1921,7 +2071,8 @@ class _SettingSliderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = enabled ? const Color(0xFF172A44) : const Color(0xFF8A98AA);
+    final colors = _BeastPalette.of(context);
+    final color = enabled ? colors.onSurface : colors.outline;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1977,6 +2128,7 @@ class _RadioOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     final selected = value == groupValue;
     return InkWell(
       borderRadius: BorderRadius.circular(12),
@@ -1991,7 +2143,7 @@ class _RadioOption extends StatelessWidget {
                   : Icons.radio_button_unchecked,
               color: selected
                   ? Theme.of(context).colorScheme.primary
-                  : const Color(0xFF62758C),
+                  : colors.onSurfaceVariant,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -2000,19 +2152,19 @@ class _RadioOption extends StatelessWidget {
                 children: [
                   Text(
                     beastText(context, title),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF172A44),
+                      color: colors.onSurface,
                     ),
                   ),
                   if (subtitle.isNotEmpty) ...[
                     const SizedBox(height: 3),
                     Text(
                       beastText(context, subtitle),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFF62758C),
+                        color: colors.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -2043,24 +2195,29 @@ class _FullWidthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 18),
-        const SizedBox(width: 8),
-        Flexible(
-          child: Text(
-            beastText(context, label),
-            overflow: TextOverflow.ellipsis,
+    final child = SizedBox(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Icon(icon, size: 18),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              beastText(context, label),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
     final style = ButtonStyle(
       minimumSize: const WidgetStatePropertyAll(Size.fromHeight(44)),
       shape: WidgetStatePropertyAll(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
     );
     if (outlined) {
@@ -2085,51 +2242,14 @@ class _BodyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = _BeastPalette.of(context);
     return Text(
       beastText(context, text),
       style: TextStyle(
         fontSize: 13,
         height: 1.45,
         fontFamily: monospace ? 'monospace' : null,
-        color: const Color(0xFF334155),
-      ),
-    );
-  }
-}
-
-class _CompactInfoCard extends StatelessWidget {
-  const _CompactInfoCard({required this.title, required this.value});
-
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 14),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFDFEFF),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFAFC2DE)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 12, color: Color(0xFF62758C)),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w800,
-              color: Color(0xFF102B4D),
-            ),
-          ),
-        ],
+        color: colors.onSurfaceVariant,
       ),
     );
   }

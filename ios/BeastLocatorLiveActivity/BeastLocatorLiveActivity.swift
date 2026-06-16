@@ -34,6 +34,7 @@ extension LiveActivitiesAppAttributes {
 }
 
 private let sharedDefaults = UserDefaults(suiteName: "group.moe.n4tsu.beast")!
+private let standardDefaults = UserDefaults.standard
 
 private let defaultDestinationLat = 35.665554
 private let defaultDestinationLng = 139.669717
@@ -66,13 +67,12 @@ private struct BeastHomeWidgetProvider: TimelineProvider {
     let entry = makeEntry()
     completion(Timeline(
       entries: [entry],
-      policy: .after(Date().addingTimeInterval(15 * 60))
+      policy: .after(Date().addingTimeInterval(60))
     ))
   }
 
   private func makeEntry() -> BeastHomeWidgetEntry {
-    let target = readDestination()
-    guard let current = readCurrentLocation() else {
+    guard sharedDefaults.bool(forKey: "widget_has_data") else {
       return BeastHomeWidgetEntry(
         date: Date(),
         title: "位置情報待機中",
@@ -82,57 +82,37 @@ private struct BeastHomeWidgetProvider: TimelineProvider {
       )
     }
 
-    let distanceMeters = distance(from: current, to: target)
-    let absoluteBearing = bearingDegrees(from: current, to: target)
-    let heading = finiteDouble(forKey: "last_heading")
-    let widgetBearingMode = sharedDefaults.string(forKey: "widget_bearing_mode") ?? "absolute"
-    let displayBearing: Double
-    if widgetBearingMode == "relative", let heading {
-      displayBearing = normalize360(absoluteBearing - heading)
-    } else {
-      displayBearing = absoluteBearing
-    }
-    let arrived = sharedDefaults.bool(forKey: "dest_answered")
-    let direction = cardinal(from: absoluteBearing)
+    let arrived = sharedDefaults.bool(forKey: "widget_arrived")
+    let distance = sharedDefaults.string(forKey: "widget_distance") ?? "--"
+    let title = sharedDefaults.string(forKey: "widget_direction") ?? "方角: --"
+    let rotation = finiteDouble(forKey: "widget_rotation") ?? 0
 
     return BeastHomeWidgetEntry(
       date: Date(),
-      title: String(format: "方角: %@", direction),
-      distance: arrived ? "到着" : formatWidgetDistance(distanceMeters),
-      rotation: normalize360(displayBearing - arrowImageForwardOffsetDegrees),
+      title: title,
+      distance: distance,
+      rotation: rotation,
       arrived: arrived
     )
   }
 
-  private func readDestination() -> (lat: Double, lng: Double) {
-    if sharedDefaults.bool(forKey: "debug_dest_override_enabled"),
-       let lat = finiteDouble(forKey: "debug_dest_override_lat"),
-       let lng = finiteDouble(forKey: "debug_dest_override_lng") {
-      return (lat, lng)
-    }
-    return (defaultDestinationLat, defaultDestinationLng)
-  }
-
-  private func readCurrentLocation() -> (lat: Double, lng: Double)? {
-    guard
-      let lat = finiteDouble(forKey: "last_lat"),
-      let lng = finiteDouble(forKey: "last_lng")
-    else {
-      return nil
-    }
-    return (lat, lng)
-  }
-
   private func finiteDouble(forKey key: String) -> Double? {
-    guard let value = sharedDefaults.object(forKey: key) as? NSNumber else {
-      return nil
+    let rawValue = sharedDefaults.object(forKey: key) ?? standardDefaults.object(forKey: key)
+    if let value = rawValue as? NSNumber {
+      let doubleValue = value.doubleValue
+      return doubleValue.isFinite ? doubleValue : nil
     }
-    let doubleValue = value.doubleValue
-    return doubleValue.isFinite ? doubleValue : nil
+    if let value = rawValue as? Double, value.isFinite {
+      return value
+    }
+    if let value = rawValue as? String, let doubleValue = Double(value), doubleValue.isFinite {
+      return doubleValue
+    }
+    return nil
   }
 }
 
-@available(iOSApplicationExtension 14.0, *)
+@available(iOSApplicationExtension 16.1, *)
 struct BeastLocatorHomeWidget: Widget {
   var body: some WidgetConfiguration {
     StaticConfiguration(kind: "BeastLocatorHomeWidget", provider: BeastHomeWidgetProvider()) { entry in
@@ -140,52 +120,84 @@ struct BeastLocatorHomeWidget: Widget {
     }
     .configurationDisplayName("BeastLocator")
     .description("野獣邸までの距離と方角を表示します。")
-    .supportedFamilies([.systemSmall])
+    .supportedFamilies([.systemSmall, .accessoryRectangular])
   }
 }
 
 private struct BeastHomeWidgetView: View {
+  @Environment(\.widgetFamily) private var family
   let entry: BeastHomeWidgetEntry
 
   var body: some View {
+    switch family {
+    case .accessoryRectangular:
+      accessoryRectangularBody
+    default:
+      systemSmallBody
+    }
+  }
+
+  private var systemSmallBody: some View {
     ZStack {
       Color(red: 0.965, green: 0.980, blue: 1.0)
       VStack(alignment: .leading, spacing: 0) {
-        HStack(alignment: .top, spacing: 8) {
+        HStack(alignment: .top, spacing: 10) {
           if entry.arrived {
             Text("🎉")
-              .font(.system(size: 32))
-              .frame(width: 44, height: 44, alignment: .center)
+              .font(.system(size: 42))
+              .frame(width: 58, height: 58, alignment: .center)
           } else {
             Image("Yjsnpi")
               .resizable()
               .scaledToFit()
-              .frame(width: 44, height: 44)
+              .frame(width: 60, height: 60)
               .rotationEffect(.degrees(entry.rotation))
           }
           Text(entry.title)
-            .font(.system(size: 10, weight: .semibold))
+            .font(.system(size: 11, weight: .semibold))
             .foregroundStyle(Color(red: 0.200, green: 0.255, blue: 0.333))
             .multilineTextAlignment(.trailing)
             .lineLimit(2)
-            .minimumScaleFactor(0.75)
+            .minimumScaleFactor(0.7)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        Spacer(minLength: 8)
+        Spacer(minLength: 4)
         Text(entry.distance)
-          .font(.system(size: 24, weight: .bold, design: .monospaced))
+          .font(.system(size: 34, weight: .bold, design: .monospaced))
           .foregroundStyle(Color(red: 0.059, green: 0.090, blue: 0.165))
           .lineLimit(1)
           .minimumScaleFactor(0.45)
           .frame(maxWidth: .infinity, alignment: .leading)
       }
-      .padding(12)
+      .padding(4)
     }
-    .overlay(
-      RoundedRectangle(cornerRadius: 20)
-        .stroke(Color(red: 0.686, green: 0.761, blue: 0.871), lineWidth: 1)
-    )
     .beastWidgetBackground()
+  }
+
+  private var accessoryRectangularBody: some View {
+    HStack(spacing: 8) {
+      if entry.arrived {
+        Text("🎉")
+          .font(.system(size: 24))
+          .frame(width: 32, height: 32)
+      } else {
+        Image("Yjsnpi")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 32, height: 32)
+          .rotationEffect(.degrees(entry.rotation))
+      }
+      VStack(alignment: .leading, spacing: 1) {
+        Text(entry.arrived ? "こ↑こ↓" : "BeastLocator")
+          .font(.caption2.weight(.semibold))
+          .lineLimit(1)
+        Text("\(entry.distance)  \(entry.title)")
+          .font(.system(.caption2, design: .monospaced).weight(.bold))
+          .lineLimit(1)
+          .minimumScaleFactor(0.65)
+      }
+      Spacer(minLength: 0)
+    }
   }
 }
 
@@ -419,7 +431,7 @@ private struct LiveActivityLockScreenView: View {
 @main
 struct BeastLocatorWidgetBundle: WidgetBundle {
   var body: some Widget {
-    if #available(iOSApplicationExtension 14.0, *) {
+    if #available(iOSApplicationExtension 16.1, *) {
       BeastLocatorHomeWidget()
     }
     if #available(iOSApplicationExtension 16.1, *) {
@@ -462,6 +474,9 @@ private func cardinal(from bearing: Double) -> String {
 
 private func formatWidgetDistance(_ meters: Double) -> String {
   if meters >= 1000 {
+    if abs(meters - 114_514.0) < 0.5 {
+      return String(format: "%.3f km", meters / 1000)
+    }
     let km = meters / 1000
     if km >= 100 {
       return String(format: "%.0f km", km)

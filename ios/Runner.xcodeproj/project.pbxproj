@@ -13,6 +13,9 @@
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		420B73763A8239F89D05906D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AFB7E6C0A4BD97F143B34D /* Foundation.framework */; };
 		465B73F6BDC55C9089A02151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C718D4A0EF8194E0257367A6 /* Assets.xcassets */; };
+		50A11451400000000000001 /* distance_114514km.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50A11451400000000000003 /* distance_114514km.mp3 */; };
+		50A11451400000000000002 /* distance_interval_kankaku.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 50A11451400000000000004 /* distance_interval_kankaku.mp3 */; };
+		50A11451400000000000005 /* arrival_0km.wav in Resources */ = {isa = PBXBuildFile; fileRef = 50A11451400000000000006 /* arrival_0km.wav */; };
 		69EA7AF1AAA63874F82B8E5A /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF8436E0989332FA6CEA949 /* Pods_RunnerTests.framework */; };
 		6D9B0826A93FA2EEFE98E672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CCF85516F1D43D6F302D8EC /* Foundation.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -21,10 +24,10 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		B4E510011B0C4F1198A10001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4E510001B0C4F1198A10001 /* InfoPlist.strings */; };
 		9DE0531243A477C10AE70D68 /* BeastLocatorLiveActivity.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F2D75E338B4EACA9BFF7E5E /* BeastLocatorLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A41F72D83E9B4C10A6D5F207 /* BeastLocatorWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B51E83C94FA620D7E1B30568 /* BeastLocatorWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A41F72D83E9B4C10A6D5F207 /* BeastLocatorWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 63E5B1E796067BC467ADCB7B /* BeastLocatorWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B30653A6BA579EB702BC1F15 /* BeastLocatorWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13CAB06CDC874AC55ECE50 /* BeastLocatorWatchApp.swift */; };
+		B4E510011B0C4F1198A10001 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4E510001B0C4F1198A10001 /* InfoPlist.strings */; };
 		DCB622378D889224AFF11BB5 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831BD703E9B19B9E27147EA1 /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,8 +102,10 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3F2D75E338B4EACA9BFF7E5E /* BeastLocatorLiveActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeastLocatorLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		407B17CBA3EECC0E4FBCC644 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		50A11451400000000000003 /* distance_114514km.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = distance_114514km.mp3; sourceTree = "<group>"; };
+		50A11451400000000000004 /* distance_interval_kankaku.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = distance_interval_kankaku.mp3; sourceTree = "<group>"; };
+		50A11451400000000000006 /* arrival_0km.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = arrival_0km.wav; sourceTree = "<group>"; };
 		63E5B1E796067BC467ADCB7B /* BeastLocatorWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeastLocatorWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B51E83C94FA620D7E1B30568 /* BeastLocatorWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BeastLocatorWatchApp.app; path = ../build/watchos/BeastLocatorWatchApp.app; sourceTree = SOURCE_ROOT; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,11 +119,11 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AA2862BCA32EDEA6D45F0AD /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9CCF85516F1D43D6F302D8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B4E510021B0C4F1198A10001 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4E510031B0C4F1198A10001 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4E510041B0C4F1198A10001 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		9AA2862BCA32EDEA6D45F0AD /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9CCF85516F1D43D6F302D8EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C718D4A0EF8194E0257367A6 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8AFB7E6C0A4BD97F143B34D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C97C30FF1B417513FD4BC6D0 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +199,9 @@
 			children = (
 				2D13CAB06CDC874AC55ECE50 /* BeastLocatorWatchApp.swift */,
 				C718D4A0EF8194E0257367A6 /* Assets.xcassets */,
+				50A11451400000000000006 /* arrival_0km.wav */,
+				50A11451400000000000003 /* distance_114514km.mp3 */,
+				50A11451400000000000004 /* distance_interval_kankaku.mp3 */,
 			);
 			path = BeastLocatorWatchApp;
 			sourceTree = "<group>";
@@ -341,6 +349,7 @@
 			);
 			dependencies = (
 				BD09D9FEEE52E2AAC66250B9 /* PBXTargetDependency */,
+				A9B42E71D6305C8F2A4D1907 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -420,6 +429,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				465B73F6BDC55C9089A02151 /* Assets.xcassets in Resources */,
+				50A11451400000000000005 /* arrival_0km.wav in Resources */,
+				50A11451400000000000001 /* distance_114514km.mp3 in Resources */,
+				50A11451400000000000002 /* distance_interval_kankaku.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,17 +627,17 @@
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
 		};
-		BD09D9FEEE52E2AAC66250B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BeastLocatorLiveActivity;
-			target = 59332F6FC5977A3CD85CD904 /* BeastLocatorLiveActivity */;
-			targetProxy = 3B21AEA14FEC76F80000A616 /* PBXContainerItemProxy */;
-		};
 		A9B42E71D6305C8F2A4D1907 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BeastLocatorWatchApp;
 			target = CC2F083AAAF9CBFFE9FB5885 /* BeastLocatorWatchApp */;
 			targetProxy = A72D9E4B10C638F5D2A1B907 /* PBXContainerItemProxy */;
+		};
+		BD09D9FEEE52E2AAC66250B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BeastLocatorLiveActivity;
+			target = 59332F6FC5977A3CD85CD904 /* BeastLocatorLiveActivity */;
+			targetProxy = 3B21AEA14FEC76F80000A616 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -665,11 +677,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = BeastLocatorLiveActivity/BeastLocatorLiveActivity.entitlements;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorLiveActivity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -737,7 +749,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -759,7 +771,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.RunnerTests;
@@ -778,7 +790,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.RunnerTests;
@@ -795,7 +807,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.RunnerTests;
@@ -809,17 +821,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorWatchApp/Info.plist;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Profile;
 		};
@@ -829,11 +843,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = BeastLocatorLiveActivity/BeastLocatorLiveActivity.entitlements;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorLiveActivity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -846,16 +860,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorWatchApp/Info.plist;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -978,7 +994,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1002,7 +1018,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W75UA8M355;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1023,11 +1039,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = BeastLocatorLiveActivity/BeastLocatorLiveActivity.entitlements;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorLiveActivity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1040,17 +1056,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = W75UA8M355;
 				INFOPLIST_FILE = BeastLocatorWatchApp/Info.plist;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = moe.n4tsu.beast.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
