@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:beast_locator/main.dart';
+import 'package:beast_locator/models/destination.dart';
+import 'package:beast_locator/utils/geo_utils.dart';
 
 void main() {
   test('GeoUtils calculates a sane distance and bearing', () {
